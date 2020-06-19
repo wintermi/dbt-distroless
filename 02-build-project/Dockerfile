@@ -4,4 +4,4 @@ FROM gcr.io/${PROJECT_ID}/dbt/distroless:0.17.0
 COPY project /dbt-project
 COPY profiles /dbt-project/profiles
 
-ENTRYPOINT ["/venv/bin/dbt-distroless.sh"]
+ENTRYPOINT ["/venv/bin/dbt-run.sh"]
