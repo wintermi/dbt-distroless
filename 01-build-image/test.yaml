@@ -1,0 +1,4 @@
+steps:
+- name: 'gcr.io/$PROJECT_ID/dbt/distroless:0.17.0'
+  args:
+  - '--help'

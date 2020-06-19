@@ -1,0 +1,11 @@
+version: 2
+
+sources:
+  - name: staging
+    schema: staging
+
+    tables:
+      - name: aisles
+      - name: random_users
+      - name: store_locations
+

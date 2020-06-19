@@ -1,0 +1,13 @@
+default:
+  target: dev
+  outputs:
+    dev:
+      type: bigquery
+      method: oauth
+      project: winter-dbt
+      dataset: dw
+      threads: 1
+      timeout_seconds: 600
+      location: US
+      priority: interactive
+      retries: 1
