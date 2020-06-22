@@ -36,9 +36,14 @@ Executing the following will build a container image, embedding a "dbt" project,
     cd build-project
     ./build
 
-Once the image has been built you can execute the dbt project via Cloud Build as follows.
+Once the image has been built you can execute the dbt project via Cloud Build using the provided test shell script.
 
     ./test.sh
     cd ..
 
+## Modifying the "dbt" Project
+
+The "dbt" Project which is execute via the above Project Image is located within the ["build-project/project"](https://github.com/winterlabs-dev/dbt-distroless/tree/master/build-project/project) directory.  Replacing the contents of this directory with your "dbt" Project and rebuilding the Project Image will embedd your transformations for execution on the next run.
+
+When you invoke "dbt" it will first parse the "dbt_project.yml" file within the Project directory to determine the name of the profile to use to connect to your data warehouse.  "dbt" will then check you "profiles.yml" file for a profile of the same name.  The location of the "profiles.yml" can be found within the ["build-project/profiles"](https://github.com/winterlabs-dev/dbt-distroless/tree/master/build-project/project) directory.
 
