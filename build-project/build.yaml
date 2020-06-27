@@ -4,6 +4,7 @@ steps:
              'build',
              '-t', 'gcr.io/$PROJECT_ID/dbt-project:latest',
              '--build-arg', 'PROJECT_ID=$PROJECT_ID',
+             '--build-arg', 'TAG_NAME=$TAG_NAME',
              '.'
          ]
 

@@ -19,31 +19,31 @@ From within [Cloud Shell](https://cloud.google.com/shell), first clone this GitH
 
 ## Build Base Image
 
-Executing the following will build the base image for "dbt" version 0.17.0 and push the image to the [Google Container Registry](https://cloud.google.com/container-registry) with a repository name of:  gcr.io/[PROJECT ID]/dbt/distroless
+Executing the following will build a base image containing a ready to execute version of "dbt".  The argument passed specifies which version of "dbt" to deploy and will also be used as the image tag when it is pushed to the [Google Container Registry](https://cloud.google.com/container-registry). The repository name being:  gcr.io/[PROJECT ID]/dbt/distroless:[TAG_NAME]
 
     cd build-image
-    ./build.sh
+    ./build.sh 0.17.0
 
-Once the image has been built you can execute a simple verification test by executing the following.
+Once the image has completed building you can perform a simple verification test by executing the following. The argument passed specifies the image tag of the base "dbt" image to test.
 
-    ./test.sh
+    ./test.sh 0.17.0
     cd ..
 
 ## Build Project Image
 
-Executing the following will build a container image, embedding a "dbt" project, using the previously built image as a base.
+Executing the following will build a container image, embedding a "dbt" project. The argument passed specifies the image tag of the base "dbt" image to use.
 
-    cd build-project
+    cd build-project 0.17.0
     ./build
 
-Once the image has been built you can execute the dbt project via Cloud Build using the provided test shell script.
+Once the project image has completed building you can quickly test the "dbt" project via Cloud Build using the "test.sh" script, as shown below:
 
     ./test.sh
     cd ..
 
 ## Modifying the "dbt" Project
 
-The "dbt" Project which is execute via the above Project Image is located within the ["build-project/project"](https://github.com/winterlabs-dev/dbt-distroless/tree/master/build-project/project) directory.  Replacing the contents of this directory with your "dbt" Project and rebuilding the Project Image will embedd your transformations for execution on the next run.
+The "dbt" Project which is executed via the above Project Image is located within the ["build-project/project"](https://github.com/winterlabs-dev/dbt-distroless/tree/master/build-project/project) directory.  Replacing the contents of this directory with your own "dbt" Project and rebuilding the Project Image will embedd your transformations for execution on the next run.
 
 When you invoke "dbt" it will first parse the "dbt_project.yml" file within the Project directory to determine the name of the profile to use to connect to your data warehouse.  "dbt" will then check you "profiles.yml" file for a profile of the same name.  The location of the "profiles.yml" can be found within the ["build-project/profiles"](https://github.com/winterlabs-dev/dbt-distroless/tree/master/build-project/project) directory.
 
