@@ -1,0 +1,2 @@
+# Ignore the requirements file as we now generate it as part of the "build.sh"
+requirements.txt

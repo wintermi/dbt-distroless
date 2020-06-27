@@ -2,9 +2,9 @@ steps:
  - name: 'gcr.io/cloud-builders/docker'
    args: [
              'build',
-             '-t', 'gcr.io/$PROJECT_ID/dbt/distroless:0.17.0',
+             '-t', 'gcr.io/$PROJECT_ID/dbt/distroless:$TAG_NAME',
              '.'
          ]
 
-images: ['gcr.io/$PROJECT_ID/dbt/distroless:0.17.0']
+images: ['gcr.io/$PROJECT_ID/dbt/distroless:$TAG_NAME']
 
